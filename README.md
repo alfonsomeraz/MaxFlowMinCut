@@ -7,11 +7,18 @@ In computer science and optimization theory, the max-flow min-cut theorem states
 
 
 ## Project Overview
+Team: Alfonso Meraz, Nathaniel Voss, Mark Nudleman, Sasha Dolynuk, Justin Sadler
 
-### Background
+### Abstract
+
+### Instructions to Run Code
 
 ### Problem
 
 ### Solution
 
+### Results
+
 ### Analysis
+
+### References
