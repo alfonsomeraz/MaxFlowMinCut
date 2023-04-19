@@ -13,7 +13,11 @@ Team: Alfonso Meraz, Nathaniel Voss, Mark Nudleman, Sasha Dolynuk, Justin Sadler
 
 ### Instructions to Run Code
 
-### Problem
+### Problems
+
+* Computer Networking
+* Resource Flow
+* Transportation
 
 ### Solution
 
