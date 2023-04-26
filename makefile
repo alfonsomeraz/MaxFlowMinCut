@@ -1,5 +1,5 @@
 CC=g++
-FLAGS=-g
+FLAGS=-g -std=c++11
 
 maxflow: main.cpp
 	$(CC) $(FLAGS) $^ -o $@ 

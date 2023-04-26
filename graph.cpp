@@ -13,6 +13,7 @@ Sources:
 #include <iostream>
 #include <fstream>
 #include <string.h>
+#include <stdlib.h>
 #include <vector>
 
 using std::vector;
