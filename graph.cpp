@@ -29,7 +29,6 @@ int main( int argc, char* argv[] ) {
     unsigned long numberOfEdges;
     unsigned long maxCapacity;
     vector<vector<int>> edgeList;
-    std::cout << "Here\n";
     myfile.open("example.csv");
 
     if(argc < 4) {
@@ -38,14 +37,12 @@ int main( int argc, char* argv[] ) {
         exit(-1);
     }
 
-    std::cout << "Here\n";
     if((numberOfNodes = strtoul(argv[1], NULL, 10)) == 0) {
         std::cerr << "ERROR: Could not extract the number of nodes from command line arguments" << std::endl;
         std::cerr << "[Format]: ./graph [No. of nodes] [sparse|dense] [Max Capacity]" << std::endl;
         exit(-1);
     }
 
-    std::cout << "Here\n";
     if(strcmp(argv[2], "dense") == 0) {
         maxEdges = numberOfNodes * (numberOfNodes - 1);
         minEdges = maxEdges / 2;
@@ -57,7 +54,6 @@ int main( int argc, char* argv[] ) {
         std::cerr << "[Format]: ./graph [No. of nodes] [sparse|dense] [Max Capacity]" << std::endl;
         exit(-1);
     }
-    std::cout << "Here\n";
 
     numberOfEdges = (rand() % (maxEdges - minEdges)) + minEdges;
 
@@ -67,9 +63,7 @@ int main( int argc, char* argv[] ) {
         exit(-1);
     }
 
-    std::cout << numberOfNodes << " " << numberOfEdges << " " << maxCapacity << std::endl;
     edgeList = GenRandomGraphs(numberOfNodes, numberOfEdges, maxCapacity);
-    std::cout << "Got ege list" << std::endl;
 
     myfile << "source,destination,capacity\n";
     for(vector<int>& edge : edgeList) {
