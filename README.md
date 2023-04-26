@@ -13,6 +13,14 @@ Team: Alfonso Meraz, Nathaniel Voss, Mark Nudleman, Sasha Dolynuk, Justin Sadler
 
 ### Instructions to Run Code
 
+In your terminal, clone the repository, go into the 
+directory and run make. 
+```
+git clone git@github.com:alfonsomeraz/MaxFlowMinCut.git
+cd MaxFlowMinCut
+make maxflow
+./maxflow
+```
 ### Problems
 
 * Computer Networking
