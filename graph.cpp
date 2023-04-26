@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /*
 Justin Sadler
 2023-26-04
@@ -111,3 +112,53 @@ vector<vector<int>> GenRandomGraphs(unsigned int V, unsigned int E, unsigned int
 
     return edges;
 }
+=======
+#include <iostream>
+#include <fstream>
+#include <cstdlib>
+#include <ctime>
+
+using namespace std;
+
+int main() {
+    srand(time(NULL)); // initialize random seed
+    
+    int n = 10; // starting number of nodes
+    int m = 5; // number of graphs to generate
+    
+    ofstream fout("graphs.csv"); // open output file
+    
+    for (int i = 0; i < m; i++) {
+        int source = rand() % n;
+        int sink = rand() % n;
+        while (sink == source) { // make sure sink is not the same as source
+            sink = rand() % n;
+        }
+        
+        fout << "Source," << source << endl; // write source vertex
+        fout << "Sink," << sink << endl; // write sink vertex
+        fout << "Source,Destination,Weight" << endl; // write header
+        
+        for (int j = 0; j < n; j++) {
+            if (j != source && j != sink) { // ignore source and sink nodes
+                for (int k = 0; k < n; k++) {
+                    if (j != k) { // ignore self-loops
+                        int weight = rand() % 100 + 1; // generate random weight between 1 and 100
+                        fout << j << "," << k << "," << weight << endl; // write edge to file
+                    }
+                }
+            }
+        }
+        
+        n += 10; // increase number of nodes for next graph
+    }
+    
+    fout.close(); // close output file
+    
+    cout << "Graphs saved to graphs.csv." << endl;
+    
+    return 0;
+}
+
+
+>>>>>>> e28ee2d (completed algorithm)
