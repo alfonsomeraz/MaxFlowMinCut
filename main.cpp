@@ -5,10 +5,9 @@
 #include <fstream>
 #include <sstream>
 #include <vector>
+#include <time.h>
 using namespace std;
  
-// Number of vertices in given graph
-#define V 6
 
 /* Returns true if there is a path from source 's' to sink
   't' in residual graph. Also fills parent[] to store the
@@ -108,57 +107,97 @@ int fordFulkerson(vector<vector<int> > graph, int s, int t, int nodes)
     return max_flow;
 }
 
+double interval(struct timespec start, struct timespec end){
+  struct timespec temp;
+  temp.tv_sec = end.tv_sec - start.tv_sec;
+  temp.tv_nsec = end.tv_nsec - start.tv_nsec;
+  if (temp.tv_nsec < 0) {
+    temp.tv_sec = temp.tv_sec - 1;
+    temp.tv_nsec = temp.tv_nsec + 1000000000;
+  }
+  return (((double)temp.tv_sec) + ((double)temp.tv_nsec)*1.0e-9);
+}
 
 int main()
 {
-    ifstream input_file("flowNetDense.csv");
-    string nodes_str, edges_str;
-    int max_nodes, max_edges;
-    string line;
-    getline(input_file, line);
-    stringstream ss(line, ',');
-    ss >> nodes_str >> max_nodes >> edges_str >> max_edges;
-    cout << "num_nodes: " << max_nodes << endl;
-    cout << "num_edges: " << max_edges << endl;
-    
-    string source, sink;
-    int source_int, sink_int;
-    getline(input_file, line);
-    stringstream ss2(line, ',');
-    ss2 >> source >> source_int >> sink >> sink_int;
-    cout << "source: " << source_int << endl;
-    cout << "sink: " << sink_int << endl;
+    struct timespec start, end;
+    double timeElapsed;
 
-    source_int -= 1;
-    sink_int -= 1;
+    // ifstream input_file;
 
-    vector<vector<int> > network(max_nodes, vector<int> (max_nodes, 0));
-    
-    while (getline(input_file, line)) {
-        int src, dst, capacity;
-        stringstream ss(line);
+    string files[9] = {"BostonCommonDirected.csv",
+                        "BostonCommonUndirected.csv",
+                        "BostonCommonUndirectedUnitCap.csv",
+                        "BostonCommonDirectedUnitCap.csv",
+                        "BostonCommonConsolidatedUndirected.csv",
+                        "BostonCommonConsolidatedDirected.csv",
+                        "flowBU.csv",
+                        "flowNetDense.csv",
+                        "flowNetMidBlob.csv"};
 
-        string cell;
-        if (getline(ss, cell, ','))
-            src = stoi(cell); // parse first number
-        if (getline(ss, cell, ','))
-            dst = stoi(cell); // parse second number
-        if (getline(ss, cell, ','))
-            capacity = stoi(cell); // parse third number
+
+    cout << "Ford-Fulkerson Algorithm" << endl;
+    cout << "------------------------" << endl;
+    cout << "     Nodes     |     Edges     |     Flow     |     Time     |     File     " << endl;
+
+    for (int i = 0; i < 9; i++)
+    {
         
+        
+        ifstream input_file(files[i]);
+        string nodes_str, edges_str;
+        int max_nodes, max_edges;
+        string line;
+        getline(input_file, line);
+        stringstream ss(line, ',');
+        ss >> nodes_str >> max_nodes >> edges_str >> max_edges;
+        cout << "         " << max_nodes;
+        cout << "         " << max_edges;
+        
+        string source, sink;
+        int source_int, sink_int;
+        getline(input_file, line);
+        stringstream ss2(line, ',');
+        ss2 >> source >> source_int >> sink >> sink_int;
+        // cout << "source: " << source_int << endl;
+        // cout << "sink: " << sink_int << endl;
 
-        network[src-1][dst-1] = capacity;
+        source_int -= 1;
+        sink_int -= 1;
+
+        vector<vector<int> > network(max_nodes, vector<int> (max_nodes, 0));
+        
+        while (getline(input_file, line)) {
+            int src, dst, capacity;
+            stringstream ss(line);
+
+            string cell;
+            if (getline(ss, cell, ','))
+                src = stoi(cell); // parse first number
+            if (getline(ss, cell, ','))
+                dst = stoi(cell); // parse second number
+            if (getline(ss, cell, ','))
+                capacity = stoi(cell); // parse third number
+            
+
+            network[src-1][dst-1] = capacity;
+        }
+        input_file.close();
+        clock_gettime(CLOCK_MONOTONIC, &start);
+        // cout << "The maximum possible flow is "
+        cout << "             " << fordFulkerson(network, source_int, sink_int, max_nodes);
+            // << endl;
+        clock_gettime(CLOCK_MONOTONIC, &end);
+
+        timeElapsed = interval(start, end);
+
+        cout << "          " << timeElapsed << " ms";
+        cout << "          " << files[i] << endl;
+        network.clear();
     }
-    input_file.close();
 
+    
 
- 
-    cout << "The maximum possible flow is "
-         << fordFulkerson(network, source_int, sink_int, max_nodes)
-         << endl;
-
-    // delete [] network;
- 
     return 0;
 }
 
