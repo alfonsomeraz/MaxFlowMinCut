@@ -136,10 +136,11 @@ int main()
                         "flowNetDense.csv",
                         "flowNetMidBlob.csv"};
 
-
-    cout << "Ford-Fulkerson Algorithm" << endl;
-    cout << "------------------------" << endl;
-    cout << "     Nodes     |     Edges     |     Flow     |     Time     |     File     " << endl;
+    FILE* cFile;
+    cFile = fopen ("RuntimeData.txt","w+");
+    fprintf(cFile,"Ford-Fulkerson Algorithm\n");
+    fprintf(cFile,"------------------------\n");
+    fprintf(cFile,"     Nodes     |     Edges     |     Flow     |     Time     |     File     \n");
 
     for (int i = 0; i < 9; i++)
     {
@@ -152,8 +153,7 @@ int main()
         getline(input_file, line);
         stringstream ss(line);
         ss >> nodes_str >> max_nodes >> edges_str >> max_edges;
-        cout << "         " << max_nodes;
-        cout << "         " << max_edges;
+        fprintf(cFile,"%9.4d  %13.3d ", max_nodes, max_edges);
         
         string source, sink;
         int source_int, sink_int;
@@ -186,14 +186,16 @@ int main()
         input_file.close();
         clock_gettime(CLOCK_MONOTONIC, &start);
         // cout << "The maximum possible flow is "
-        cout << "             " << fordFulkerson(network, source_int, sink_int, max_nodes);
+        int max_flow = fordFulkerson(network, source_int, sink_int, max_nodes);
+        fprintf(cFile, "%15.3d ", max_flow);
             // << endl;
         clock_gettime(CLOCK_MONOTONIC, &end);
 
         timeElapsed = interval(start, end);
 
-        cout << "          " << timeElapsed << " ms";
-        cout << "          " << files[i] << endl;
+        fprintf(cFile, "%16.3e ms\t%s\n", timeElapsed, files[i].c_str());
+        //cout << "          " << timeElapsed << " ms";
+        //cout << "          " << files[i] << endl;
         network.clear();
     }
 
