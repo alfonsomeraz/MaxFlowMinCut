@@ -6,6 +6,7 @@
 #include <sstream>
 #include <vector>
 #include <time.h>
+#include <cstring>
 using namespace std;
  
 
@@ -149,7 +150,7 @@ int main()
         int max_nodes, max_edges;
         string line;
         getline(input_file, line);
-        stringstream ss(line, ',');
+        stringstream ss(line);
         ss >> nodes_str >> max_nodes >> edges_str >> max_edges;
         cout << "         " << max_nodes;
         cout << "         " << max_edges;
@@ -157,7 +158,7 @@ int main()
         string source, sink;
         int source_int, sink_int;
         getline(input_file, line);
-        stringstream ss2(line, ',');
+        stringstream ss2(line);
         ss2 >> source >> source_int >> sink >> sink_int;
         // cout << "source: " << source_int << endl;
         // cout << "sink: " << sink_int << endl;
