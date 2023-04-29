@@ -148,18 +148,19 @@ int main()
         
         ifstream input_file(files[i]);
         string nodes_str, edges_str;
-        int max_nodes, max_edges;
+        int max_nodes, max_edges, actual_num_nodes;
         string line;
         getline(input_file, line);
         stringstream ss(line);
-        ss >> nodes_str >> max_nodes >> edges_str >> max_edges;
-        fprintf(cFile,"%9.4d  %13.3d ", max_nodes, max_edges);
+        ss >> nodes_str >> actual_num_nodes >> edges_str >> max_edges;
+        fprintf(cFile,"%9.4d  %13.3d ", actual_num_nodes, max_edges);
         
         string source, sink;
         int source_int, sink_int;
         getline(input_file, line);
         stringstream ss2(line);
         ss2 >> source >> source_int >> sink >> sink_int;
+        max_nodes = sink_int;
         // cout << "source: " << source_int << endl;
         // cout << "sink: " << sink_int << endl;
 
