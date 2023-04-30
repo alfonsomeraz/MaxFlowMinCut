@@ -126,7 +126,7 @@ int main()
 
     // ifstream input_file;
 
-    string files[9] = {"BostonCommonDirected.csv",
+    string files[10] = {"BostonCommonDirected.csv",
                         "BostonCommonUndirected.csv",
                         "BostonCommonUndirectedUnitCap.csv",
                         "BostonCommonDirectedUnitCap.csv",
@@ -134,7 +134,8 @@ int main()
                         "BostonCommonConsolidatedDirected.csv",
                         "flowBU.csv",
                         "flowNetDense.csv",
-                        "flowNetMidBlob.csv"};
+                        "flowNetMidBlob.csv",
+                        "denseGraph.csv"};
 
     FILE* cFile;
     cFile = fopen ("RuntimeData.txt","w+");
@@ -142,11 +143,11 @@ int main()
     fprintf(cFile,"------------------------\n");
     fprintf(cFile,"     Nodes     |     Edges     |     Flow     |     Time     |     File     \n");
 
-    for (int i = 0; i < 9; i++)
+    for (int i = 0; i < 10; i++)
     {
         
         
-        ifstream input_file(files[i]);
+        ifstream input_file("input/" + files[i]);
         string nodes_str, edges_str;
         int max_nodes, max_edges, actual_num_nodes;
         string line;
