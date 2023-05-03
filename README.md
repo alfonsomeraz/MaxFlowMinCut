@@ -7,7 +7,7 @@ In computer science and optimization theory, the max-flow min-cut theorem states
 
 
 ## Project Overview
-Team: Alfonso Meraz, Nathaniel Voss, Mark Nudleman, Sasha Dolynuk, Justin Sadler
+Team: Alfonso Meraz, Nathaniel Voss, Mark Nudleman, Sasha Dolynuk (U57701712, adolynuk), Justin Sadler
 
 ### Abstract
 Flow network graphs model the transport of items from a source to a sink using a network of routes where each edge is directed and has a capacity. Maximum flow is an optimization problem that searches for the maximum possible flow rate through a network using multiple paths from source to sink. This problem has many applications including transport systems, the flow of information through computer networks, and image segmentation. The max-flow min-cut theorem states that the maximum possible flow for a network is equal to the minimum capacity over all cuts of the network. By examining the minimum cut of a network, one can analyze how the maximum flow is limited.
