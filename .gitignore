@@ -1,5 +1,7 @@
 maxflow.exe
 graph.exe
 .vscode/*
+main.dSYM/Contents/*
+maxflow.dSYM/Contents/*
 graph
 env/*
