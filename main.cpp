@@ -138,7 +138,7 @@ int main()
                         "denseGraph.csv"};
 
     FILE* cFile;
-    cFile = fopen ("RuntimeData.txt","w+");
+    cFile = fopen ("output/RuntimeData.txt","w+");
     fprintf(cFile,"Ford-Fulkerson Algorithm\n");
     fprintf(cFile,"------------------------\n");
     fprintf(cFile,"     Nodes     |     Edges     |     Flow     |     Time     |     File     \n");

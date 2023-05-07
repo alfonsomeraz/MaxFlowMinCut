@@ -1,0 +1,13 @@
+Ford-Fulkerson Algorithm
+------------------------
+     Nodes     |     Edges     |     Flow     |     Time     |     File     
+     0232            380             006        5.557e-03 ms	BostonCommonDirected.csv
+     0232            751             022        1.230e-02 ms	BostonCommonUndirected.csv
+     0232            751             003        3.028e-03 ms	BostonCommonUndirectedUnitCap.csv
+     0232            380             002        3.049e-03 ms	BostonCommonDirectedUnitCap.csv
+     0135            525             044        9.022e-03 ms	BostonCommonConsolidatedUndirected.csv
+     0135            267             020        4.621e-03 ms	BostonCommonConsolidatedDirected.csv
+     0062            131             066        5.664e-04 ms	flowBU.csv
+     0033            136             003        1.777e-04 ms	flowNetDense.csv
+     0033            251             008        2.991e-04 ms	flowNetMidBlob.csv
+     0011            090             378        1.305e-04 ms	denseGraph.csv
